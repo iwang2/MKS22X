@@ -6,6 +6,8 @@ public class Recursion{
     public static double sqrt(double n){
 	if(n < 0){
 	    throw new IllegalArgumentException();
+	}else if(n < 4){
+	    return helper(n, 4);
 	}else{
 	    return helper(n, n / 2);
 	}
@@ -14,7 +16,8 @@ public class Recursion{
     public static double helper(double n, double guess){
 	if(n == 0){
 	    return 0;
-	}else if(guess * guess / n < 1.00000000001){
+	}else if(guess * guess / n < 1.000000001){
+	    System.out.print(guess * guess + ": ");
 	    return guess;
 	}else{
 	    return helper(n, (n / guess + guess) / 2);
