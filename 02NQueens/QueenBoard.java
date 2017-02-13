@@ -13,9 +13,27 @@ public class QueenBoard{
 
     //find 1st solution and stop; updates toString board
     public void solve(){
-	
+	return solveH(0);
     }
-
+    private boolean solveH(int col){
+	for(int r = 0; r < board.length; r++){
+	    if(board[r][col] < 1){
+		addQueen(r,col);
+		return solveH(col+1);
+	    }
+	}
+    }
+    private void addQueen(row,col){
+	board[row][col] = -1;
+	for(int c = col; c < board.length; c++){
+	    board[row][c]++;
+	}
+	for(int pr = row; pr < ; pr++){
+	    for(int pc = col; ; pc++){
+	    }
+	}
+    }
+    
     //look for all solutions, updates solutionCount
     public void countSolutions(){
     }
@@ -37,8 +55,5 @@ public class QueenBoard{
     }
 
     public static void main(String[]args){
-	QueenBoard a = new QueenBoard(5);
-	System.out.println(a);
-	System.out.println(a.getCount());
     }
 }
