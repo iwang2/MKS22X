@@ -31,6 +31,7 @@ public class QueenBoard{
 	    bc++;
 	}
     }
+
     private void removeQueen(int row, int col){
 	board[row][col] = 0;
 	for(int c = col+1; c < board.length; c++){
@@ -51,21 +52,32 @@ public class QueenBoard{
 	    bc++;
 	}
     }
-
-    /*
-    //find 1st solution and stop; updates toString board
-    public void solve(){
-	return solveH(0);
+    
+    //find 1st solution and stops; updates toString board
+    public boolean solve(){
+	return solveH(0,0);
     }
-    private boolean solveH(int col){
-	for(int r = 0; r < board.length; r++){
-	    if(board[r][col] < 1){
-		addQueen(r,col);
-		return solveH(col+1);
-	    }
+    private boolean solveH(int row, int col){
+	if(col >= board.length){
+	    return true;
 	}
+	if(row >= board.length && col < 0){
+	    return false;
+	}else if(row >= board.length){
+	    for(int i = 0; i < board.length; i++){
+		if(board[i][col-1] < 0){
+		    removeQueen(i,col-1);
+		    return solveH(i+1,col);
+		}
+	    }
+	}else if(board[row][col] == 0){
+	    addQueen(row,col);
+	    return solveH(0,col+1);
+	}else{
+	    return solveH(row+1,col);
+	}
+	return false;
     }
-    */
     
     //look for all solutions, updates solutionCount
     public void countSolutions(){
@@ -83,7 +95,8 @@ public class QueenBoard{
 		if(board[r][c] < 0){
 		    ans+= "[Q]";
 		}else{
-		    ans += "[" + board[r][c] + "]";
+		    //ans += "[" + board[r][c] + "]";
+		    ans+= "[_]";
 		}
 	    }
 	    ans += "\n";
@@ -92,11 +105,19 @@ public class QueenBoard{
     }
 
     public static void main(String[]args){
-	QueenBoard a = new QueenBoard(5);
-	a.addQueen(1,2);
-	a.addQueen(3,1);
-	System.out.println(a);
-	a.removeQueen(1,2);
-	System.out.println(a);
+	try{
+	    QueenBoard input = new QueenBoard(Integer.parseInt(args[0]));
+	    System.out.println(input.solve());
+	    System.out.println(input);
+	}
+	catch(IndexOutOfBoundsException e){	    
+	    QueenBoard a = new QueenBoard(5);
+	    System.out.println(a.solve());
+	    System.out.println(a);
+
+	    QueenBoard b = new QueenBoard(10);
+	    System.out.println(b.solve());
+	    System.out.println(b);
+	}
     }
 }
