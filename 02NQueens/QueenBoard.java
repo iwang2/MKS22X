@@ -12,29 +12,47 @@ public class QueenBoard{
     }
 
     private void addQueen(int row, int col){
-	int num = col+1;
         board[row][col] = -1;
-	for(int r = 0; r < board.length; r++){
-	    board[r][col] = num;
+	for(int c = col+1; c < board.length; c++){
+	    board[row][c]++;
 	}
-	for(int c = 0; c < board.length; c++){
-	    board[row][c] = num;
+	int tr = row-1;
+	int tc = col+1;
+	while(tr >= 0 && tc < board.length){
+	    board[tr][tc]++;
+	    tr--;
+	    tc++;
 	}
-	num--;
-	for(int t = row; t >= 0; t--){
-	    for(int c = num; c < 
+	int br = row+1;
+	int bc = col+1;
+	while(br < board.length && bc < board.length){
+	    board[br][bc]++;
+	    br++;
+	    bc++;
+	}
     }
     private void removeQueen(int row, int col){
-	board[row][col] = col;
-	for(int r = 0; r < board.length; r++){
-	    for(int c = 0; c < board.length; c++){
-		if(board[r][c] == col+1){
-		    board[r][c] = col;
-		}
-	    }
+	board[row][col] = 0;
+	for(int c = col+1; c < board.length; c++){
+	    board[row][c]--;
+	}
+	int tr = row-1;
+	int tc = col+1;
+	while(tr >= 0 && tc < board.length){
+	    board[tr][tc]--;
+	    tr--;
+	    tc++;
+	}
+	int br = row+1;
+	int bc = col+1;
+	while(br < board.length && bc < board.length){
+	    board[br][bc]--;
+	    br++;
+	    bc++;
 	}
     }
-    
+
+    /*
     //find 1st solution and stop; updates toString board
     public void solve(){
 	return solveH(0);
@@ -47,16 +65,7 @@ public class QueenBoard{
 	    }
 	}
     }
-    private void addQueen(row,col){
-	board[row][col] = -1;
-	for(int c = col; c < board.length; c++){
-	    board[row][c]++;
-	}
-	for(int pr = row; pr < ; pr++){
-	    for(int pc = col; ; pc++){
-	    }
-	}
-    }
+    */
     
     //look for all solutions, updates solutionCount
     public void countSolutions(){
@@ -71,7 +80,11 @@ public class QueenBoard{
 	String ans = "";
 	for(int r = 0; r < board.length; r++){
 	    for (int c = 0; c < board.length; c++){
-		ans += "[" + board[r][c] + "]";
+		if(board[r][c] < 0){
+		    ans+= "[Q]";
+		}else{
+		    ans += "[" + board[r][c] + "]";
+		}
 	    }
 	    ans += "\n";
 	}
@@ -79,5 +92,11 @@ public class QueenBoard{
     }
 
     public static void main(String[]args){
+	QueenBoard a = new QueenBoard(5);
+	a.addQueen(1,2);
+	a.addQueen(3,1);
+	System.out.println(a);
+	a.removeQueen(1,2);
+	System.out.println(a);
     }
 }
