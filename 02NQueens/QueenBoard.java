@@ -11,8 +11,32 @@ public class QueenBoard{
 	}
     }
 
+    private void addQueen(int row, int col){
+	int num = col+1;
+        board[row][col] = -1;
+	for(int r = 0; r < board.length; r++){
+	    board[r][col] = num;
+	}
+	for(int c = 0; c < board.length; c++){
+	    board[row][c] = num;
+	}
+	num--;
+	for(int t = row; t >= 0; t--){
+	    for(int c = num; c < 
+    }
+    private void removeQueen(int row, int col){
+	board[row][col] = col;
+	for(int r = 0; r < board.length; r++){
+	    for(int c = 0; c < board.length; c++){
+		if(board[r][c] == col+1){
+		    board[r][c] = col;
+		}
+	    }
+	}
+    }
+    
     //find 1st solution and stop; updates toString board
-    public void solve(){
+    public void solve(int row, int col){
 	
     }
 
@@ -28,7 +52,7 @@ public class QueenBoard{
     public String toString(){
 	String ans = "";
 	for(int r = 0; r < board.length; r++){
-	    for (int c = 0; c < board[0].length; c++){
+	    for (int c = 0; c < board.length; c++){
 		ans += "[" + board[r][c] + "]";
 	    }
 	    ans += "\n";
@@ -38,7 +62,9 @@ public class QueenBoard{
 
     public static void main(String[]args){
 	QueenBoard a = new QueenBoard(5);
+	a.addQueen(2,2);
 	System.out.println(a);
-	System.out.println(a.getCount());
+	a.removeQueen(2,2);
+	System.out.println(a);
     }
 }
