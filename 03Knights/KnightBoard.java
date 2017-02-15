@@ -21,11 +21,30 @@ public class KnightBoard{
     }
 
     public void solve(){
+	for(int r = 0; r < board.length; r++){
+	    for( int c = 0; c < board[0].length; c++){
+		if(solveH(r,c,1)){
+		    return;
+		}
+	    }
+	}
     }
     private boolean solveH(int row, int col, int level){
 	if(level >= size){
 	    solved = true;
 	    return true;
+	}else if(board[row][col] == 0){
+	    board[row][col] = level + 1;
+	    for(int i = 0; i < 8; i++){
+		int r = row + direction[i][0];
+		int c = col + direction[i][1];
+		if(r >= 0 && r < board.length &&
+		   c >= 0 && c < board[0].length &&
+		   solveH(r, c, level + 1)){
+		    return true;
+		}
+	    }
+	    board[row][col] = 0;	    
 	}
 	return false;
     }
@@ -49,7 +68,8 @@ public class KnightBoard{
     }
 
     public static void main(String[]args){
-	KnightBoard a = new KnightBoard(5,5);
+	KnightBoard a = new KnightBoard(4,4);
+	a.solve();
 	System.out.println(a);
     }
 }
