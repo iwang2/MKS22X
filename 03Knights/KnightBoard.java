@@ -8,6 +8,7 @@ public class KnightBoard{
     public KnightBoard(int row, int col){
 	board = new int[row][col];
 	size = row * col;
+	solved = false;
 	
 	direction[0][0] = 1; direction[0][1] = 2;
 	direction[1][0] = 1; direction[1][1] = -2;
@@ -23,6 +24,7 @@ public class KnightBoard{
     }
     private boolean solveH(int row, int col, int level){
 	if(level >= size){
+	    solved = true;
 	    return true;
 	}
 	return false;
@@ -30,5 +32,24 @@ public class KnightBoard{
 
     //blank if never called or no solution
     public String toString(){
+	String ans = "";
+	if(solved){
+	    for(int r = 0; r < board.length; r++){
+		for(int c = 0; c < board[0].length; c++){
+		    if(board[r][c] < 10){
+			ans += " " + board[r][c] + " ";
+		    }else{
+			ans += board[r][c] + " ";
+		    }
+		}
+		ans += "\n";
+	    }
+	}
+	return ans;
+    }
+
+    public static void main(String[]args){
+	KnightBoard a = new KnightBoard(5,5);
+	System.out.println(a);
     }
 }
