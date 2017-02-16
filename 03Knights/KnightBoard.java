@@ -1,5 +1,6 @@
 public class KnightBoard{
     private int[][] board;
+    private int[][] less;
     private boolean solved;
     private int size;
     private int wide;
@@ -13,6 +14,7 @@ public class KnightBoard{
 	size = wide * tall;
 	
 	board = new int[wide][tall];
+	less = new int[wide][tall];
 	solved = false;
 	
 	direction[0][0] = 1; direction[0][1] = 2;
@@ -23,6 +25,21 @@ public class KnightBoard{
 	direction[5][0] = 2; direction[5][1] = -1;
 	direction[6][0] = -2; direction[6][1] = 1;
 	direction[7][0] = -2; direction[7][1] = -1;
+
+	for(int r = 0; r < wide; r++){
+	    for(int c = 0; c < tall; c++){
+		int pos = 0; 
+		for(int i = 0; i < 8; i++){
+		    int newr = r + direction[i][0];
+		    int newc = c + direction[i][1];
+		    if(newr >= 0 && newr < wide &&
+		       newc >= 0 && newc < tall){
+			pos++;
+		    }
+		}
+		less[r][c] = pos;
+	    }
+	}
     }
 
     public void solve(){
@@ -77,11 +94,23 @@ public class KnightBoard{
 	}
 	return ans;
     }
+    public String toString2(){
+	String ans = "";
+	for(int r = 0; r < wide; r++){
+	    for(int c = 0; c < tall; c++){
+		ans += less[r][c] + " ";
+	    }
+	    ans += "\n";
+	}
+	return ans;
+    }
 
     public static void main(String[]args){
 	if(args.length == 2){
 	    KnightBoard a = new KnightBoard(Integer.parseInt(args[0]),
 					    Integer.parseInt(args[1]));
+	    
+	    System.out.println(a.toString2());
 	    a.solve();
 	    System.out.println(a);
 	}
