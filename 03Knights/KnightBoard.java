@@ -77,6 +77,38 @@ public class KnightBoard{
 	return false;
     }
 
+    public void solveFast(){
+	int row = wide / 2 + wide % 2;
+	int col = tall / 2 + tall % 2;
+	for(int r = 0; r < row; r++){
+	    for(int c = r; c < col; c++){
+		if(faster(r,c,1)){
+		    solved = true;
+		    return;
+		}
+	    }
+	}
+    }
+    public boolean faster(int row, int col, int level){
+	if(level > size){
+	    return true;
+	}
+	else if(board[row][col] == 0){
+	}
+	return false;
+    }
+    public int[][] arr(int row, int col){
+	int options = 0;
+	for(int i = 0; i < 8; i++){
+	    int r = row + direction[i][0];
+	    int c = row + direction[i][1];
+
+	    if(r >= 0 && r < wide && c >= 0 && c < tall){
+		options++;
+	    }
+	}
+    }
+    
     //blank if never called or no solution
     public String toString(){
 	String ans = "";
