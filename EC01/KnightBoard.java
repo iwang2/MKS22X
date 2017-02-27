@@ -76,7 +76,7 @@ public class KnightBoard{
 	}
 	return false;
     }
-
+    
     public void solveFast(){
 	int row = wide / 2 + wide % 2;
 	int col = tall / 2 + tall % 2;
@@ -94,21 +94,55 @@ public class KnightBoard{
 	    return true;
 	}
 	else if(board[row][col] == 0){
+	    board[row][col] = level;
+	    int[][] arr = arr(row,col);
+	    int r;
+	    int c;
+	    for(int i = arr.length-1; i >= 0; i--){
+	        r = row + direction[arr[i][0]][0];
+		c = col + direction[arr[i][0]][1];
+		
+		if(r >= 0 && r < wide && c >= 0 && c < tall &&
+		   faster(r,c,level+1)){
+		    return true;
+		}
+	    }
 	}
 	return false;
     }
+
     public int[][] arr(int row, int col){
-	int options = 0;
+	int[] values = new int[8];
+	int asize = 0;
+	
 	for(int i = 0; i < 8; i++){
 	    int r = row + direction[i][0];
-	    int c = row + direction[i][1];
+	    int c = col + direction[i][1];
 
-	    if(r >= 0 && r < wide && c >= 0 && c < tall){
-		options++;
+	    if(r >= 0 && r < wide && c >= 0 && c < tall && less[r][c] > 0){
+		values[i] = less[r][c];
+		less[r][c]--;
+		asize++;
 	    }
 	}
+	print1(values);
+	
+	int[][] val = new int[asize][2];
+	for(int a = 0; a < asize; a++){
+	    int max = 0;
+	    for(int l = 0; l < 8; l++){
+		if(values[l] > max){
+		    max = values[l];
+		    values[l] = 0;
+		    val[a][0] = l;
+		}
+	    }
+	    val[a][1] = max;
+	}
+	print2(val);
+	return val;
     }
-    
+
     //blank if never called or no solution
     public String toString(){
 	String ans = "";
@@ -126,6 +160,7 @@ public class KnightBoard{
 	}
 	return ans;
     }
+    
     public String toString2(){
 	String ans = "";
 	for(int r = 0; r < wide; r++){
@@ -136,6 +171,23 @@ public class KnightBoard{
 	}
 	return ans;
     }
+    public static void print2(int[][] ar){
+	String ans = "";
+	for(int r = 0; r < ar.length; r++){
+	    for(int c = 0; c < ar[0].length; c++){
+		ans += ar[r][c] + " ";
+	    }
+	    ans += "\n";
+	}
+	System.out.println(ans);
+    }
+    public static void print1(int[] ar){
+	String ans = "";
+	for(int r = 0; r < ar.length; r++){
+	    ans += ar[r] + " ";
+	}
+	System.out.println(ans);
+    }
 
     public static void main(String[]args){
 	if(args.length == 2){
@@ -143,8 +195,10 @@ public class KnightBoard{
 					    Integer.parseInt(args[1]));
 	    
 	    System.out.println(a.toString2());
-	    a.solve();
-	    System.out.println(a);
+	    int[][] b = a.arr(Integer.parseInt(args[0])-2,Integer.parseInt(args[1])-2);
+	    System.out.println(a.toString2());
+	    //a.solveFast();
+	    //System.out.println(a);
 	}
     }
 }
