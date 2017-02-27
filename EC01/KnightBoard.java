@@ -106,6 +106,8 @@ public class KnightBoard{
 		   faster(r,c,level+1)){
 		    return true;
 		}
+		else{
+		}
 	    }
 	}
 	return false;
@@ -122,10 +124,10 @@ public class KnightBoard{
 	    if(r >= 0 && r < wide && c >= 0 && c < tall && less[r][c] > 0){
 		values[i] = less[r][c];
 		less[r][c]--;
+		less[row][col] = 0;
 		asize++;
 	    }
 	}
-	print1(values);
 	
 	int[][] val = new int[asize][2];
 	for(int a = 0; a < asize; a++){
@@ -133,14 +135,21 @@ public class KnightBoard{
 	    for(int l = 0; l < 8; l++){
 		if(values[l] > max){
 		    max = values[l];
-		    values[l] = 0;
 		    val[a][0] = l;
 		}
 	    }
+	    values[val[a][0]] = 0;
 	    val[a][1] = max;
 	}
-	print2(val);
 	return val;
+    }
+
+    public void revertless(int row, int col){
+	int self = 0;
+	for(int i = 0; i < 8; i++){
+	    int r = row + direction[i][0];
+	    int c = col + direction[i][1];
+	}
     }
 
     //blank if never called or no solution
@@ -197,8 +206,9 @@ public class KnightBoard{
 	    System.out.println(a.toString2());
 	    int[][] b = a.arr(Integer.parseInt(args[0])-2,Integer.parseInt(args[1])-2);
 	    System.out.println(a.toString2());
-	    //a.solveFast();
-	    //System.out.println(a);
+	    a.solveFast();
+	    System.out.println(a.solved);
+	    System.out.println(a);
 	}
     }
 }
