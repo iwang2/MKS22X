@@ -95,7 +95,7 @@ public class QueenBoard{
     }
 
     //returns number of solutions, or -1 if solver was never run
-    public int getCount(){
+    public int getSolutionCount(){
 	return solutionCount;
     }
 
@@ -122,14 +122,14 @@ public class QueenBoard{
 	    //System.out.println(a.solve());
 	    //System.out.println(a);
 	    a.countSolutions();
-	    System.out.println(a.getCount());
+	    System.out.println(a.getSolutionCount());
 	}
 	catch(IndexOutOfBoundsException e){
 	    QueenBoard a;
 	    for(int i = 0; i < 11; i++){
 		a = new QueenBoard(i);
 		a.countSolutions();
-		System.out.println(i + ": " + a.getCount());
+		System.out.println(i + ": " + a.getSolutionCount());
 	    }
 	}
     }
