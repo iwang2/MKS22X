@@ -1,6 +1,5 @@
 import java.util.Scanner;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 
 public class Maze{
     private char[][] maze;
@@ -19,16 +18,35 @@ public class Maze{
     */
 
     public Maze(String filename){
-	int r = 0, c = 0;
+	int s = 0, e = 0;
+	width = 0; length = 0;
+	String str = "";
 	try{
 	    Scanner scan = new Scanner(new File(filename));
+	    if(scan.hasNextLine()){
+		width = scan.nextLine().length();
+	    }
 	    while(scan.hasNextLine()){
-		String line = scan.nextLine();
-		for(int i = 0; i < width; i++){
+		str += scan.nextLine();
+		length++;
+	    }
+	}catch(FileNotFoundException n){
+	    System.out.println("Invalid filename.");
+	    System.exit(1);
+	}
+	for(int r = 0; r < width; r++){
+	    String line = str.substring(width*r,width*(r+1));
+	    for(int c = 0; c < length; c++){
+		maze[r][c] = line.charAt(c);
+		if(maze[r][c] == 'S'){
+		    s++;
+		}else if(maze[r][c] == 'E'){
+		    e++;
 		}
 	    }
-	}catch(FileNotFoundException e){
-	    System.out.println("File not found. Please provide a valid file name.");
+        }
+	if(e != 1 || s != 1){
+	    System.out.println("Invalid number of start and end points.");
 	    System.exit(1);
 	}
 	animate = false;
@@ -84,5 +102,16 @@ public class Maze{
 	
         return false; //so it compiles
     }
-
+    public String toString(){
+	String ans = "";
+	for(int r = 0; r < length; r++){
+	    for(int c = 0; c < width; c++){
+		ans += maze[r][c];
+	    }
+	    if(r < length-1){
+		ans += "\n";
+	    }
+	}
+	return ans;
+    }
 }
