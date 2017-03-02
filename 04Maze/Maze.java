@@ -1,6 +1,11 @@
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+
 public class Maze{
     private char[][] maze;
     private boolean animate;
+    private int width, length;
 
     /*Constructor loads a maze text file, and sets animate to false by default.
       1. The file contains a rectangular ascii maze, made with the following 4 characters:
@@ -14,6 +19,19 @@ public class Maze{
     */
 
     public Maze(String filename){
+	int r = 0, c = 0;
+	try{
+	    Scanner scan = new Scanner(new File(filename));
+	    while(scan.hasNextLine()){
+		String line = scan.nextLine();
+		for(int i = 0; i < width; i++){
+		}
+	    }
+	}catch(FileNotFoundException e){
+	    System.out.println("File not found. Please provide a valid file name.");
+	    System.exit(1);
+	}
+	animate = false;
     }
 
     private void wait(int millis){
@@ -35,7 +53,7 @@ public class Maze{
       Since the constructor exits when the file is not found or is missing an E or S, we can assume it exists.
     */
     public boolean solve(){
-	int startr=-1,startc=-1;
+	int startr = -1, startc = -1;
 
 	//Initialize starting row and startint col with the location of the S.
 	maze[startr][startc] = ' ';//erase the S, and start solving!
@@ -59,12 +77,11 @@ public class Maze{
     private boolean solve(int row, int col){
         if(animate){
             System.out.println("\033[2J\033[1;1H"+this);
-
             wait(20);
         }
 
         //COMPLETE SOLVE
-
+	
         return false; //so it compiles
     }
 
