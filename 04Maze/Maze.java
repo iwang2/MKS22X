@@ -23,9 +23,6 @@ public class Maze{
 	String str = "";
 	try{
 	    Scanner scan = new Scanner(new File(filename));
-	    if(scan.hasNextLine()){
-		width = scan.nextLine().length();
-	    }
 	    while(scan.hasNextLine()){
 		str += scan.nextLine();
 		length++;
@@ -34,13 +31,16 @@ public class Maze{
 	    System.out.println("Invalid filename.");
 	    System.exit(1);
 	}
-	for(int r = 0; r < width; r++){
-	    String line = str.substring(width*r,width*(r+1));
-	    for(int c = 0; c < length; c++){
+	width = str.length() / length;
+	maze = new char[length][width];
+	for(int r = 0; r < length; r++){
+	    String line = str.substring(width*r,width*r+width);
+	    for(int c = 0; c < width; c++){
 		maze[r][c] = line.charAt(c);
 		if(maze[r][c] == 'S'){
 		    s++;
-		}else if(maze[r][c] == 'E'){
+		}
+		if(maze[r][c] == 'E'){
 		    e++;
 		}
 	    }
@@ -113,5 +113,10 @@ public class Maze{
 	    }
 	}
 	return ans;
+    }
+
+    public static void main(String[]args){
+	Maze a = new Maze("test.txt");
+	System.out.println(a);///
     }
 }
