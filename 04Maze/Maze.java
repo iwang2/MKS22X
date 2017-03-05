@@ -74,6 +74,14 @@ public class Maze{
 	int startr = -1, startc = -1;
 
 	//Initialize starting row and startint col with the location of the S.
+	for(int r = 0; r < length; r++){
+	    for(int c = 0; c < width; c++){
+		if(maze[r][c] == 'S'){
+		    startr = r;
+		    startc = c;
+		}
+	    }
+	}
 	maze[startr][startc] = ' ';//erase the S, and start solving!
 	return solve(startr,startc);
     }
@@ -92,14 +100,25 @@ public class Maze{
         All visited spots that were not part of the solution are changed to '.'
         All visited spots that are part of the solution are changed to '@'
     */
-    private boolean solve(int row, int col){
+    private boolean solve(int r, int c){
         if(animate){
             System.out.println("\033[2J\033[1;1H"+this);
             wait(20);
         }
-
-        //COMPLETE SOLVE
 	
+        //COMPLETE SOLVE
+        if(maze[r][c] == 'E'){
+	    return true;
+	}else if(maze[r][c] != ' '){
+	    return false;
+	}else{	    
+	    maze[r][c] = '@';
+	    if(solve(r+1,c) || solve(r-1,c)||
+	       solve(r,c+1) || solve(r,c-1)){
+		return true;
+	    }
+	    maze[r][c] = '.';
+	}
         return false; //so it compiles
     }
     public String toString(){
@@ -116,7 +135,14 @@ public class Maze{
     }
 
     public static void main(String[]args){
-	Maze a = new Maze("test.txt");
-	System.out.println(a);///
+	if(args.length > 0){
+	    Maze b = new Maze(args[0]);
+	    b.solve();
+	    System.out.println(b);
+	}else{
+	    Maze a = new Maze("data1.txt");
+	    a.solve();
+	    System.out.println(a);
+	}
     }
 }
