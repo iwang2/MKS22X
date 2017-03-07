@@ -42,9 +42,7 @@ public class USACO{
 	    for(int c = 0; c < width; c++){
 		System.out.print(lake[r][c] + " ");
 	    }
-	    if(r < length-1){
-		System.out.println();
-	    }
+	    System.out.println();
 	}
     }
 
@@ -53,16 +51,56 @@ public class USACO{
 	    for(int c = 0; c < 3; c++){
 		System.out.print(stomps[r][c] + " ");
 	    }
-	    if(r < 2){
-		System.out.println();
+	    System.out.println();
+	}
+    }
+
+    private void solve() {
+	for (int i = 0; i < stomps.length; i++) {
+	    stomp(stomps[i][0] - 1, stomps[i][1] - 1, stomps[i][2]);
+	}
+    }
+
+    private void stomp(int row, int col, int stomps){
+	int max = 0;
+	for(int r = 0; r < 3; r++){
+	    for(int c = 0; c < 3; c++){
+		if(lake[row+r][col+c] > max){
+		    max = lake[row+r][col+c];
+		}
+	    }
+	}
+	int limit = max - stomps;
+	for(int r = 0; r < 3; r++){
+	    for(int c = 0; c < 3; c++){
+	        if(lake[row+r][col+c] > limit){
+		    lake[row+r][col+c] = limit;
+		}
 	    }
 	}
     }
-    
+
+    private int calculate() {
+	int sum = 0;
+	for (int r = 0; r < length; r++) {
+	    for (int c = 0; c < width; c++) {
+		if (lake[r][c] < elevation) {
+		    sum += (elevation - lake[r][c]);
+		}
+	    }
+	}
+	return sum;
+    }
+	
     public static void main(String[]args){
 	USACO a = new USACO("makelake.txt");
+	// System.out.println(a.width + " " + a.length);
+	// a.stomp(0,3,4);
+	a.solve();
 	a.printLake();
 	System.out.println();
-	a.printStomps();
+	System.out.println(a.calculate());
+	// a.stomp(0,0,10);
+	// a.printLake();
     }
 }
