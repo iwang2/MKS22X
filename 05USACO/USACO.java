@@ -127,14 +127,12 @@ public class USACO{
 		    }
 		}
 	    }
-	    print(pasture);
-	    System.out.println();
 	}
 	return pasture[endr][endc];
     }
 
     public static void main(String[]args){
-	/*
+	//bronze tests
 	try{
 	    for(int i = 1; i < 11; i++){
 		System.out.print("test " + i + ": ");		
@@ -145,7 +143,16 @@ public class USACO{
 	    System.out.println("Invalid filename");
 	    System.exit(1);
 	}
-	*/
-	silver("ctravel.1.in");
+	//silver tests
+	try{
+	    for(int i = 1; i < 11; i++){
+		System.out.print("test " + i + ": ");
+		Scanner scan = new Scanner(new File("ctravel." + i + ".out"));
+		System.out.println(silver("ctravel." + i + ".in") == scan.nextInt());
+	    }
+	}catch(FileNotFoundException u){
+	    System.out.println("Invalid filename");
+	    System.exit(1);
+	}
     }
 }
