@@ -35,14 +35,16 @@ public class Quick{
 	int start = 0, end = data.length - 1;
 	while(start < end){
 	    int part = part(data, start, end);
-	    if(data[part] > k){
+	    if(data[part] > k - 1){
 		end = part;
-	    }else if(data[part] < k){
+	    }else if(data[part] < k - 1){
 		start = part;
 	    }else{
+		System.out.println("index: " + part);
 		return data[part];
 	    }
 	}
+	System.out.println("index: " + start);
 	return data[start];
     }
     
