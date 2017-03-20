@@ -25,16 +25,6 @@ public class Quick{
 	}
     }
 
-    public static int part2(int[] data, int start, int end){
-	int part = (int)(Math.random() * (end - start)) + start;
-	int value = data[part];
-	swap(data, start, part);
-	start++;
-
-	while(start < end){
-	}
-    }
-    
     private static void swap(int[] data, int first, int last){
 	int swap = data[first];
 	data[first] = data[last];
@@ -45,16 +35,18 @@ public class Quick{
 	int start = 0, end = data.length - 1;
 	while(start < end){
 	    int part = part(data, start, end);
-	    if(data[part] > k - 1){
-		end = part;
-	    }else if(data[part] < k - 1){
-		start = part;
-	    }else{
+	    if(part == k){
+		return data[part];
+	    }else
+	    if(part > k){
+		end = part-1;
+	    }else if(part < k){
+		start = part+1;
+	    }/*else{
 		System.out.println("index: " + part);
 		return data[part];
-	    }
+	    }*/
 	}
-	System.out.println("index: " + start);
 	return data[start];
     }
 
@@ -67,7 +59,7 @@ public class Quick{
 
     public static void main(String[]args){
 	int[] ary = {3, 1, 3, 4, 3, 3, 3, 0};
-	System.out.println(part(ary, 3, 10));
+	System.out.println(quickSelect(ary, 7));
 	print(ary);
     }
 }
