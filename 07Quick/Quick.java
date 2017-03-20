@@ -6,23 +6,22 @@ public class Quick{
 	int first = start;
 	swap(data, start, index);
 	start++;
+	int equal = start;
 
-	while(start < end){
-	    if(data[start] >= part){
-		swap(data, start, end);
-		end--;
-	    }else if(data[start] < part){
+	while(equal <= end){
+	    if(data[equal] == part){
+		equal++;
+	    }else if(data[equal] < part){
+		swap(data, start, equal);
 		start++;
+		equal++;
+	    }else if(data[equal] > part){
+		swap(data, equal, end);
+		end--;
 	    }
 	}
-	
-	if(data[start] >= part){
-	    swap(data, start-1, first);
-	    return start-1;
-	}else{
-	    swap(data, start, first);
-	    return start;
-	}
+	swap(data, first, end);
+	return end;
     }
 
     private static void swap(int[] data, int first, int last){
@@ -59,7 +58,7 @@ public class Quick{
 
     public static void main(String[]args){
 	int[] ary = {3, 1, 3, 4, 3, 3, 3, 0};
-	System.out.println(quickSelect(ary, 7));
+	System.out.println(quickSelect(ary, 4));
 	print(ary);
     }
 }
