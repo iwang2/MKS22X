@@ -53,7 +53,7 @@ public class Quick{
     
     public static void sortH(int[] data, int start, int end){
 	int[] part = part(data, start, end);
-	if(part[1] - part[0] < 1){
+	if(end-start < 2){
 	    return;
 	}else{
 	    sortH(data, start, part[0] - 1);
