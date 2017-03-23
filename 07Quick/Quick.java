@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Quick{
     
     public static int[] part(int[] data, int start, int end){
@@ -7,7 +9,7 @@ public class Quick{
 	swap(data, start, index);
 	start++;
 	int equal = start;
-
+	
 	while(equal <= end){
 	    if(data[equal] == part){
 		equal++;
@@ -52,10 +54,9 @@ public class Quick{
     }
     
     public static void sortH(int[] data, int start, int end){
-	int[] part = part(data, start, end);
-	if(end-start < 2){
-	    return;
-	}else{
+	//print(data);	
+	if(end-start > 1){
+	    int[] part = part(data, start, end);
 	    sortH(data, start, part[0] - 1);
 	    sortH(data, part[1] + 1, end);
 	}
@@ -68,7 +69,17 @@ public class Quick{
 	System.out.println();
     }
 
+    public static boolean compare(int[] a, int[] b){
+	for(int i = 0; i < a.length; i++){
+	    if(a[i] != b[i]){
+		return false;
+	    }
+	}
+	return true;
+    }
+
     public static void main(String[]args){
+	/*
 	int[] ary = {3, 1, 3, 4, 3, 3, 3, 0};
 	//System.out.println(quickSelect(ary, 1));
 	quickSort(ary);
@@ -77,5 +88,16 @@ public class Quick{
 	int[] a = {6, 3, 4, 0, 2, 1, 5};
 	quickSort(a);
 	print(a);
+	*/
+
+	int[] b1 = new int[100];
+	for(int i = 0; i < 100; i++){
+	    b1[i] = (int)(Math.random() * 10);
+	}
+	int[] b2 = b1;
+	Arrays.sort(b1);
+	quickSort(b2);
+	System.out.println(compare(b1,b2));
+	
     }
 }
