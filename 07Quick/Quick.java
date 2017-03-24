@@ -6,6 +6,7 @@ public class Quick{
 	int index = (int)(Math.random() * (end-start)) + start,
 	    part = data[index],
 	    first = start;
+	
 	swap(data, start, index);
 	start++;
 	int equal = start;
@@ -90,9 +91,9 @@ public class Quick{
 	print(a);
 	*/
 
-	int[] b1 = new int[100];
-	for(int i = 0; i < 100; i++){
-	    b1[i] = (int)(Math.random() * 10);
+	int[] b1 = new int[1000000];
+	for(int i = 0; i < 1000000; i++){
+	    b1[i] = (int)(Math.random() * 50);
 	}
 	int[] b2 = b1;
 	Arrays.sort(b1);
