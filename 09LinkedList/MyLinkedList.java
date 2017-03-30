@@ -58,7 +58,7 @@ public class MyLinkedList{
     //EXCEPTIONS!!!
     public int get(int index){
 	LNode temp = start;
-	for(int i = 0; i <= index; i++){
+	for(int i = 0; i < index; i++){
 	    temp = temp.next;
 	}
 	return temp.value;
@@ -69,7 +69,7 @@ public class MyLinkedList{
 	LNode temp = start;
 	int old = get(index);
 	
-	for(int i = 0; i <= index; i++){
+	for(int i = 0; i < index; i++){
 	    temp = temp.next;
 	}
 
@@ -82,8 +82,11 @@ public class MyLinkedList{
 	a.add(2);
 	a.add(-4);
 	a.add(100);
-	a.add(-66);
 	System.out.println(a.size());
+	System.out.println(a);
+	a.set(1, 22);
+	System.out.println(a);
+	a.set(2, 222);
 	System.out.println(a);
     }
 }
