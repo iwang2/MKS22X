@@ -46,7 +46,7 @@ public class MyLinkedList{
 	String ans = "";
 	System.out.print("[");
 	for(int i = 0; i < size; i++){
-	    ans = node.value + " ";
+	    ans += node.value + " ";
 	    node = node.next;
 	}
 	return ans.substring(0, ans.length() - 1) + "]";
@@ -79,6 +79,7 @@ public class MyLinkedList{
 	a.add(2);
 	a.add(-4);
 	a.add(100);
+	System.out.println(a.size());
 	System.out.println(a);
     }
 }
