@@ -23,9 +23,12 @@ public class MyLinkedList{
 	if(size == 0){
 	    start = new LNode(value, null);
 	}else{
-	    LNode temp = start;
-	    start.value = value;
-	    start.next = temp;
+	    LNode temp = new LNode(value, null);
+	    LNode current = start;
+	    for(int i = 1; i < size; i++){
+		current = current.next;
+	    }
+	    current.next = temp;
 	}
 	/*
 	for(int i = 0; i < size; i++){
@@ -46,10 +49,10 @@ public class MyLinkedList{
 	String ans = "";
 	System.out.print("[");
 	for(int i = 0; i < size; i++){
-	    ans += node.value + " ";
+	    ans += node.value + ", ";
 	    node = node.next;
 	}
-	return ans.substring(0, ans.length() - 1) + "]";
+	return ans.substring(0, ans.length() - 2) + "]";
     }
 
     //EXCEPTIONS!!!
@@ -79,6 +82,7 @@ public class MyLinkedList{
 	a.add(2);
 	a.add(-4);
 	a.add(100);
+	a.add(-66);
 	System.out.println(a.size());
 	System.out.println(a);
     }
