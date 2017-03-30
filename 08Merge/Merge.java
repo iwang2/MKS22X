@@ -43,9 +43,31 @@ public class Merge{
 	System.out.println();
     }
 
+    public static boolean compare(int[] a, int[] b){
+	for(int i = 0; i < a.length; i++){
+	    if(a[i] != b[i]){
+		return false;
+	    }
+	}
+	return true;
+    }
+
     public static void main(String[]args){
 	int[] a = {4, 5, 1, 7, 2, 3, 6, 0};
 	mergesort(a);
 	print(a);
+
+	System.out.println();
+	
+	int[] b1 = new int[30];
+	for(int i = 0; i < 30; i++){
+	    b1[i] = (int)(Math.random() * 10);
+	}
+	print(b1);
+	int[] b2 = b1;
+	mergesort(b1);
+	Arrays.sort(b2);
+	System.out.println(compare(b1,b2));
+	print(b1);
     }
 }
