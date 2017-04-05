@@ -107,36 +107,53 @@ public class MyLinkedList{
     }
 
     private void addAfter(LNode location, LNode toBeAdded){
-	toBeAdded.next = location.next;
-	toBeAdded.prev = location;
-	location.next.prev = toBeAdded;
-	location.next = toBeAdded;	
+	if(location == tail){
+	    location.next = toBeAdded;
+	    toBeAdded.prev = location;
+	}else{
+	    toBeAdded.next = location.next;
+	    toBeAdded.prev = location;
+	    location.next.prev = toBeAdded;
+	    location.next = toBeAdded;
+	}
+    }
+    private void addBefore(LNode location, LNode toBeAdded){
+	if(location == head){
+	    toBeAdded.next = location;
+	    location.prev = toBeAdded;
+	}else{
+	    toBeAdded.next = location;
+	    toBeAdded.prev = location.prev;
+	    location.prev.next = toBeAdded;
+	    location.prev = toBeAdded;
+	}
     }
     
     public int remove(int index){
+	int rem = get(index);
 	remove(getNode(index));
+	return rem;
     }
     
     public void add(int index, int value){
 	LNode add = new LNode(value);
-	addAfter(getNode(index),add);
+	if(index == size - 1){
+	    addAfter(getNode(index), add);
+	}else{
+	    addBefore(getNode(index),add);
+	}
     }
     
     //EXCEPTIONS!!!
     public boolean add(int value){
-	/*
 	if(size == 0){
-	    head = new LNode(value, null);
+	    head = new LNode(value);
 	    tail = head;
 	}else{
-	    tail.next = new LNode(value, null);
-	    tail.next.prev = tail;
-	    tail = tail.next;
+	    add(size-1, value);
 	}
 	size++;
 	return true;
-	*/
-	add(size-1, value);
     }
 
     public int size(){
