@@ -1,4 +1,6 @@
-public class MyLinkedList{
+import java.util.*;
+
+public class MyLinkedList implements Iterable<Integer>{
     
     private class LNode{
 	private int value;
@@ -10,6 +12,32 @@ public class MyLinkedList{
 
 	public String toString(){
 	    return value + " ";
+	}
+    }
+
+    public class MyLinkedListIterator implements Iterator<Integer>{
+	private MyLinkedList it;
+	private LNode current;
+
+	public MyLinkedListIterator(MyLinkedList it){
+	    current = it.head;
+	    this.it = it;
+	}
+	
+	public boolean hasNext(){
+	    return it.tail != current;
+	}
+	
+	public Integer next(){
+	    if(hasNext()){
+		current = current.next;
+		return current.prev.value;
+	    }else{
+		throw new NoSuchElementException();
+	    }
+	}
+	
+	public void remove(){
 	}
     }
     
@@ -158,6 +186,10 @@ public class MyLinkedList{
 
     public int size(){
 	return size;
+    }
+
+    public Iterator<Integer> iterator(){
+	return new MyLinkedListIterator(this);
     }
     
     public static void main(String[] args){
