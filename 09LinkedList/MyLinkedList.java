@@ -43,8 +43,10 @@ public class MyLinkedList implements Iterable<Integer>{
     
     private LNode head, tail;
     private int size;
+    private boolean testing;
 
     public MyLinkedList(){
+	testing = false;
 	size = 0;
     }
 
@@ -79,20 +81,6 @@ public class MyLinkedList implements Iterable<Integer>{
 
     //EXCEPTIONS!!!
     public int set(int index, int newValue){
-	/*
-	if(index < 0 || index >= size){
-	    throw new IndexOutOfBoundsException();
-	}
-	LNode temp = head;
-	int old = get(index);
-	
-	for(int i = 0; i < index; i++){
-	    temp = temp.next;
-	}
-
-	temp.value = newValue;
-	return old;
-	*/
 	LNode swap = getNode(index);
 	int old = swap.value;
 	swap.value = newValue;
@@ -119,7 +107,7 @@ public class MyLinkedList implements Iterable<Integer>{
 	for(int i = 0; i < index; i++){
 	    current = current.next;
 	}
-	return current.next;
+	return current;
     }
 
     private void remove(LNode node){
@@ -144,17 +132,21 @@ public class MyLinkedList implements Iterable<Integer>{
 	    location.next.prev = toBeAdded;
 	    location.next = toBeAdded;
 	}
+	size++;
     }
     private void addBefore(LNode location, LNode toBeAdded){
 	if(location == head){
-	    toBeAdded.next = location;
-	    location.prev = toBeAdded;
+	    LNode old = location;	    
+	    head = toBeAdded;
+	    head.next = old;
+	    old.prev = head;
 	}else{
 	    toBeAdded.next = location;
 	    toBeAdded.prev = location.prev;
 	    location.prev.next = toBeAdded;
 	    location.prev = toBeAdded;
 	}
+	size++;
     }
     
     public int remove(int index){
@@ -164,11 +156,11 @@ public class MyLinkedList implements Iterable<Integer>{
     }
     
     public void add(int index, int value){
-	LNode add = new LNode(value);
-	if(index == size - 1){
-	    addAfter(getNode(index), add);
+	LNode node = new LNode(value);
+	if(index == size){
+	    add(value);
 	}else{
-	    addBefore(getNode(index),add);
+	    addBefore(getNode(index), node);
 	}
     }
     
@@ -178,9 +170,12 @@ public class MyLinkedList implements Iterable<Integer>{
 	    head = new LNode(value);
 	    tail = head;
 	}else{
-	    add(size-1, value);
+	    LNode follow = new LNode(value);
+	    tail.next = follow;
+	    tail = follow;
 	}
 	size++;
+	if(testing) System.out.println(this);
 	return true;
     }
 
@@ -194,11 +189,13 @@ public class MyLinkedList implements Iterable<Integer>{
     
     public static void main(String[] args){
 	MyLinkedList a = new MyLinkedList();
-	System.out.println(a);
+	//a.testing = true;
 	a.add(2);
 	a.add(-4);
 	a.add(100);
-	a.set(1, 50);
+	//System.out.println(size);
+	a.add(1, 50);
+	//System.out.println(size);
 	System.out.println(a);
     }
 }
