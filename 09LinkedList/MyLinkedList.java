@@ -41,15 +41,17 @@ public class MyLinkedList implements Iterable<Integer>{
 	public void remove(){
 	}
     }
+    
+    public Iterator<Integer> iterator(){
+	return new MyLinkedListIterator(this);
+    }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
     private LNode head, tail;
     private int size;
-    private boolean testing;
 
     public MyLinkedList(){
-	testing = false;
 	size = 0;
     }
 
@@ -181,19 +183,18 @@ public class MyLinkedList implements Iterable<Integer>{
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
-    public Iterator<Integer> iterator(){
-	return new MyLinkedListIterator(this);
-    }
-    
     public static void main(String[] args){
 	MyLinkedList a = new MyLinkedList();
-	//a.testing = true;
 	a.add(2);
 	a.add(-4);
 	a.add(100);
-	//System.out.println(size);
 	a.add(3,50);
-	//System.out.println(size);
 	System.out.println(a);
+	System.out.println(a.tail.prev);
+
+	Iterator<Integer> it = a.iterator();
+        while(it.hasNext()){
+	    System.out.println(it.next());
+	}
     }
 }
