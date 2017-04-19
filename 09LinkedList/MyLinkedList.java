@@ -32,13 +32,14 @@ public class MyLinkedList implements Iterable<Integer>{
 	public Integer next(){
 	    if(hasNext()){
 		current = current.next;
-		return current.prev.value;
+		return current.value;
 	    }else{
 		throw new NoSuchElementException();
 	    }
 	}
-	
+
 	public void remove(){
+	    throw new UnsupportedOperationException();
 	}
     }
     
@@ -190,7 +191,6 @@ public class MyLinkedList implements Iterable<Integer>{
 	a.add(100);
 	a.add(3,50);
 	System.out.println(a);
-	System.out.println(a.tail.prev);
 
 	Iterator<Integer> it = a.iterator();
         while(it.hasNext()){
