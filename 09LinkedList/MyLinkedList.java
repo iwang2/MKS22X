@@ -26,13 +26,14 @@ public class MyLinkedList implements Iterable<Integer>{
 	}
 	
 	public boolean hasNext(){
-	    return it.tail != current;
+	    return current != null;
 	}
 	
 	public Integer next(){
 	    if(hasNext()){
+		int val = current.value;
 		current = current.next;
-		return current.value;
+		return val;
 	    }else{
 		throw new NoSuchElementException();
 	    }
@@ -191,6 +192,8 @@ public class MyLinkedList implements Iterable<Integer>{
 	a.add(100);
 	a.add(3,50);
 	System.out.println(a);
+
+	System.out.println(a.tail.prev.next);
 
 	Iterator<Integer> it = a.iterator();
         while(it.hasNext()){
