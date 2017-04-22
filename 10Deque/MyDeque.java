@@ -1,15 +1,22 @@
+import java.util.*;
+
 public class MyDeque{
     private String[] ar;
     private int front, back, size;
 
     public MyDeque(){
 	ar = new String[6];
-	front = 0;
-	back = ;
 	size = 0;
     }
 
     public void addFirst(String s){
+	if(size == ar.length){
+	    resize();
+	}
+	if(s == null){
+	    throw new NullPointerException();
+	}
+	
 	if(size == 0){
 	    front = 0;
 	    back = 0;
@@ -23,6 +30,13 @@ public class MyDeque{
     }
     
     public void addLast(String s){
+	if(size == ar.length){
+	    resize();
+	}
+	if(s == null){
+	    throw new NullPointerException();
+	}
+	
 	if(size == 0){
 	    front = 0;
 	    back = 0;
@@ -36,15 +50,41 @@ public class MyDeque{
     }
 
     public String removeFirst(){
+	if(size == 0){
+	    throw new NoSuchElementException();
+	}
+	String ans = ar[front];
+	ar[front] = null;
+	if(front == size - 1){
+	    front = 0;
+	}else{
+	    front++;
+	}
+	size--;
+	return ans;
     }
 
     public String removeLast(){
+	if(size == 0){
+	    throw new NoSuchElementException();
+	}
+	String ans = ar[back];
+	ar[back] = null;
+	if(back == 0){
+	    back = size - 1;
+	}else{
+	    back--;
+	}
+	size--;
+	return ans;
     }
 
     public String getFirst(){
+	return ar[front];
     }
 
     public String getLast(){
+	return ar[back];	
     }
 
     private void resize(){
@@ -58,9 +98,17 @@ public class MyDeque{
 	    int index = 0;
 	    for(int i = front; i < size; i++){
 		ar[index] = old[i];
+		index++;
+	    }
+	    for(int i = back; i < front; i++){
+		ar[index] = old[i];
+		index++;
 	    }
 	}
 	front = 0;
 	back = size - 1;
+    }
+
+    public static void main(String[] args){
     }
 }
