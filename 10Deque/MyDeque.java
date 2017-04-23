@@ -5,7 +5,7 @@ public class MyDeque{
     private int front, back, size;
 
     public MyDeque(){
-	ar = new String[6];
+	ar = new String[2];
 	size = 0;
     }
 
@@ -90,17 +90,18 @@ public class MyDeque{
     private void resize(){
 	String[] old = ar;
 	ar = new String[ar.length * 2];
-	if(back > front){
+	int index = 0;
+	if(back >= front){
 	    for(int i = front; i <= back; i++){
-		ar[i - front] = old[i];
-	    }
-	}else{
-	    int index = 0;
-	    for(int i = front; i < size; i++){
 		ar[index] = old[i];
 		index++;
 	    }
-	    for(int i = back; i < front; i++){
+	}else{
+	    for(int i = front; i < old.length; i++){
+		ar[index] = old[i];
+		index++;
+	    }
+	    for(int i = 0; i < front; i++){
 		ar[index] = old[i];
 		index++;
 	    }
@@ -132,9 +133,11 @@ public class MyDeque{
 	a.print();
 	a.addFirst("a");
 	a.print();
-	a.removeLast();
+	a.addFirst(" ");
 	a.print();
-	a.removeFirst();
+	a.addFirst("BLAH");
+	a.print();
+	a.addFirst("bleh");
 	a.print();
     }
 }
