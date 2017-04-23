@@ -21,7 +21,7 @@ public class MyDeque{
 	    front = 0;
 	    back = 0;
 	}else if(front == 0){
-	    front = size - 1;
+	    front = ar.length - 1;
 	}else{
 	    front--;
 	}
@@ -40,7 +40,7 @@ public class MyDeque{
 	if(size == 0){
 	    front = 0;
 	    back = 0;
-	}else if(back == size - 1){
+	}else if(back == ar.length - 1){
 	    back = 0;
 	}else{
 	    back++;
@@ -55,7 +55,7 @@ public class MyDeque{
 	}
 	String ans = ar[front];
 	ar[front] = null;
-	if(front == size - 1){
+	if(front == ar.length - 1){
 	    front = 0;
 	}else{
 	    front++;
@@ -71,7 +71,7 @@ public class MyDeque{
 	String ans = ar[back];
 	ar[back] = null;
 	if(back == 0){
-	    back = size - 1;
+	    back = ar.length - 1;
 	}else{
 	    back--;
 	}
@@ -109,6 +109,32 @@ public class MyDeque{
 	back = size - 1;
     }
 
+    private void print(){
+	for(int i = 0; i < ar.length; i++){
+	    if(ar[i] == null){
+		System.out.print("_ ");
+	    }
+	    else{
+		System.out.print(ar[i] + " ");
+	    }
+	}
+	System.out.println();
+    }
+    
     public static void main(String[] args){
+	MyDeque a = new MyDeque();
+	a.print();
+	a.addLast("c");
+	a.print();
+	a.addFirst("b");
+	a.print();
+	a.addLast("d");
+	a.print();
+	a.addFirst("a");
+	a.print();
+	a.removeLast();
+	a.print();
+	a.removeFirst();
+	a.print();
     }
 }
