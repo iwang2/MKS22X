@@ -2,12 +2,12 @@ public class MyHeap{
     
     private ArrayList<String> heap;
     private boolean b;
-    private int head, tail;
+    private int tail;
     
     public MyHeap(){
 	b = true;
 	heap = new ArrayList<String>();
-	head = 1;
+	heap.add("");
 	tail = 1;
     }
 
@@ -15,19 +15,30 @@ public class MyHeap{
     public MyHeap(boolean b){
 	this.b = b;
 	heap = new ArrayList<String>();
+	heap.add("");
     }
 
     public void add(String s){
+	heap.add(s);
+	tail++;
+	up(tail);
     }
 
     public String remove(){
+	heap.remove(tail);
+	tail--;
     }
 
     public String peek(){
+	return heap.get(tail);
     }
 
-    private void up(){
-	int tail = heap.get(heap.size() - 1);
+    //max --> min
+    private void up(int index){
+	if(index != 1 || heap.get(index / 2).compareTo(heap.get(index)) < 0){
+	    swap(index, index / 2);
+	    up(index / 2);
+	}
     }
 
     private void down(){
