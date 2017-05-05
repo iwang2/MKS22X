@@ -27,7 +27,7 @@ public class MyHeap{
 	if(b){
 	    upM(tail);
 	}else{
-	    //upm(tail);
+	    upm(tail);
 	}
     }
 
@@ -39,7 +39,7 @@ public class MyHeap{
 	if(b){
 	    downM(1);
 	}else{
-	    //downm(1);
+	    downm(1);
 	}
 	return ans;
     }
@@ -55,6 +55,13 @@ public class MyHeap{
 	}
     }
 
+    private void upm(int index){
+	if(index != 1 && heap.get(index / 2).compareTo(heap.get(index)) > 0){
+	    swap(index, index / 2);
+	    upm(index / 2);
+	}
+    }
+    
     private void downM(int index){
 	if(index > tail / 2){
 	    return;
@@ -67,6 +74,18 @@ public class MyHeap{
 	}
     }
 
+    private void downm(int index){
+	if(index > tail / 2){
+	    return;
+	}else if(heap.get(index).compareTo(heap.get(index*2)) > 0){
+	    swap(index, index*2);
+	    downM(index*2);
+	}else if(heap.get(index).compareTo(heap.get(index*2 + 1)) > 0){
+	    swap(index, index*2 + 1);
+	    downM(index*2 + 1);
+	}
+    }
+
     private void swap(int in1, int in2){
 	String hold = heap.get(in1);
 	heap.set(in1, heap.get(in2));
@@ -74,21 +93,30 @@ public class MyHeap{
     }
 
     public void print(){
-	for(int i = 1; i <= tail; i *= 2){
+	/*
+	for(int i = 1; i < tail; i *= 2){
 	    for(int j = i; j < i*2; j++){
-		System.out.print(heap.get(j) + " ");
+		System.out.println(i*2);
+		//System.out.print(heap.get(j) + " ");
 	    }
-	    System.out.println();
+	    //System.out.println();
 	}
+	*/
+
+	for(int i = 1; i <= tail; i++){
+	    System.out.print(heap.get(i) + " ");
+	}
+	System.out.println();
     }
 
     public static void main(String[] args){
-	MyHeap a = new MyHeap();
+	MyHeap a = new MyHeap(false);
 	a.add("b");
 	a.add("d");
 	a.add("a");
 	a.add("e");
 	a.add("c");
+	a.add("f");
 	a.print();
     }
 }
