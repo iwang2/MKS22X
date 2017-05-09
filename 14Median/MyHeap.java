@@ -111,11 +111,11 @@ public class MyHeap{
 
     public static void main(String[] args){
 	MyHeap a = new MyHeap(false);
-	a.add(3);
-	a.add(5);
-	a.add(1);
-	a.add(4);
-	a.add(2);
+	a.add(1021);
+	a.add(401);
+	a.add(64);
+	a.add(56);
+	a.add(714);
 	a.add(0);
 	a.print();
     }
