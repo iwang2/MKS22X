@@ -45,7 +45,7 @@ public class MyHeap{
     }
 
     public int peek(){
-	return heap.get(tail);
+	return heap.get(1);
     }
     
     private void upM(int index){
@@ -65,10 +65,10 @@ public class MyHeap{
     private void downM(int index){
 	if(index > tail / 2){
 	    return;
-	}else if(heap.get(index) < (heap.get(index*2))){
+	}else if(heap.get(index) < heap.get(index*2) && heap.get(index*2) > heap.get(index*2 + 1)){
 	    swap(index, index*2);
 	    downM(index*2);
-	}else if(heap.get(index) < (heap.get(index*2 + 1))){
+	}else if(heap.get(index) < heap.get(index*2 + 1)){
 	    swap(index, index*2 + 1);
 	    downM(index*2 + 1);
 	}
@@ -77,10 +77,10 @@ public class MyHeap{
     private void downm(int index){
 	if(index > tail / 2){
 	    return;
-	}else if(heap.get(index) > (heap.get(index*2))){
+	}else if(heap.get(index) > heap.get(index*2) && heap.get(index*2) < heap.get(index*2 + 1)){
 	    swap(index, index*2);
 	    downM(index*2);
-	}else if(heap.get(index) > (heap.get(index*2 + 1))){
+	}else if(heap.get(index) > heap.get(index*2 + 1)){
 	    swap(index, index*2 + 1);
 	    downM(index*2 + 1);
 	}
@@ -111,12 +111,14 @@ public class MyHeap{
 
     public static void main(String[] args){
 	MyHeap a = new MyHeap(false);
-	a.add(1021);
-	a.add(401);
-	a.add(64);
-	a.add(56);
-	a.add(714);
+	a.add(4);
+	a.add(3);
+	a.add(1);
+	a.add(5);
+	a.add(6);
 	a.add(0);
+	a.print();
+	a.remove();
 	a.print();
     }
 }
