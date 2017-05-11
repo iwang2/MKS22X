@@ -65,7 +65,8 @@ public class MyHeap{
     private void downM(int index){
 	if(index > tail / 2){
 	    return;
-	}else if(heap.get(index) < heap.get(index*2) && heap.get(index*2) > heap.get(index*2 + 1)){
+	}else if(heap.get(index) < heap.get(index*2) &&
+		 heap.get(index*2) > heap.get(index*2 + 1)){
 	    swap(index, index*2);
 	    downM(index*2);
 	}else if(heap.get(index) < heap.get(index*2 + 1)){
@@ -77,7 +78,8 @@ public class MyHeap{
     private void downm(int index){
 	if(index > tail / 2){
 	    return;
-	}else if(heap.get(index) > heap.get(index*2) && heap.get(index*2) < heap.get(index*2 + 1)){
+	}else if(heap.get(index) > heap.get(index*2) &&
+		 heap.get(index*2) < heap.get(index*2 + 1)){
 	    swap(index, index*2);
 	    downM(index*2);
 	}else if(heap.get(index) > heap.get(index*2 + 1)){
@@ -103,6 +105,11 @@ public class MyHeap{
 	}
 	*/
 
+	if(b){
+	    System.out.print("max: ");
+	}else{
+	    System.out.print("min: ");
+	}
 	for(int i = 1; i <= tail; i++){
 	    System.out.print(heap.get(i) + " ");
 	}
