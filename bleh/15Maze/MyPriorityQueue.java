@@ -13,6 +13,7 @@ public class MyPriorityQueue{
 
     public void add(Location l){
 	pq.add(l);
+	tail++;
 	up(tail);
     }
 
@@ -29,7 +30,6 @@ public class MyPriorityQueue{
 	return pq.get(1);
     }
 
-    // MODIFY FOR COMPARISON BETWEEN LOCATIONS
     private void up(int index){
 	if(index != 1 && pq.get(index / 2).compareTo(pq.get(index)) > 0){
 	    swap(index, index / 2);
@@ -56,5 +56,24 @@ public class MyPriorityQueue{
 	Location hold = pq.get(1);
 	pq.set(in1, pq.get(in2));
 	pq.set(in2, hold);
+    }
+
+    private void print(){
+	for(int i = 1; i <= tail; i++){
+	    System.out.print(pq.get(i).getDG() + " ");
+	}
+	System.out.println();
+    }
+
+    public static void main(String[] args){
+	MyPriorityQueue a = new MyPriorityQueue();
+	int random;
+	for(int i = 0; i < 7; i++){
+	    random = (int)(Math.random() * 10);
+	    a.add(new Location(random));
+	    System.out.print(random + " ");
+	}
+	System.out.println();
+        a.print();
     }
 }
