@@ -14,6 +14,11 @@ public class Location implements Comparable<Location>{
 	this.aStar = aStar;
     }
 
+    public Location(int distToGoal){
+	this.distToGoal = distToGoal;
+	aStar = false;
+    }
+
     public int compareTo(Location other){
 	if(aStar){
 	    return distToGoal + distToStart -
@@ -21,5 +26,9 @@ public class Location implements Comparable<Location>{
 	}else{
 	    return distToGoal - other.distToGoal;
 	}
+    }
+
+    public int getDG(){
+	return distToGoal;
     }
 }
