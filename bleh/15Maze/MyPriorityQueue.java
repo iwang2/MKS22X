@@ -53,7 +53,7 @@ public class MyPriorityQueue{
     }
 
     private void swap(int in1, int in2){
-	Location hold = pq.get(1);
+	Location hold = pq.get(in1);
 	pq.set(in1, pq.get(in2));
 	pq.set(in2, hold);
     }
@@ -68,12 +68,13 @@ public class MyPriorityQueue{
     public static void main(String[] args){
 	MyPriorityQueue a = new MyPriorityQueue();
 	int random;
+	String original = "";
 	for(int i = 0; i < 7; i++){
 	    random = (int)(Math.random() * 10);
 	    a.add(new Location(random));
-	    System.out.print(random + " ");
+	    original += random + " ";
 	}
-	System.out.println();
+	System.out.println(original);
         a.print();
     }
 }
