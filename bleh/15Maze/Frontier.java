@@ -1,4 +1,4 @@
 public interface Frontier{
-    void add(Location);
+    void add(Location l);
     Location next();
 }
