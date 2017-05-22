@@ -31,4 +31,12 @@ public class Location implements Comparable<Location>{
     public int getDG(){
 	return distToGoal;
     }
+
+    public void setaStar(boolean a){
+	aStar = a;
+    }
+
+    public boolean getaStar(){
+	return aStar;
+    }
 }
