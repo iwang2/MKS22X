@@ -8,4 +8,8 @@ public class StackFrontier implements Frontier{
     public Location next(){
 	return s.pop()
     }
+
+    public boolean hasNext(){
+	return !s.empty();
+    }
 }

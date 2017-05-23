@@ -112,7 +112,7 @@ public class Maze{
     return ans + "\n";
   }
 
-  public char get(int row,int col){
+  public char get(int row, int col){
     return maze[row][col];
   }
   public void set(int row,int col, char n){

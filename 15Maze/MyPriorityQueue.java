@@ -11,6 +11,10 @@ public class MyPriorityQueue{
 	tail = 0;
     }
 
+    public boolean empty(){
+	return pq.size() == 0;
+    }
+    
     public void add(Location l){
 	pq.add(l);
 	tail++;

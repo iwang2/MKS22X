@@ -8,4 +8,8 @@ public class FrontierPriorityQueue implements Frontier{
     public Location next(){
 	return pq.remove();
     }
+
+    public boolean hasNext(){
+	return !pq.empty();
+    }
 }
