@@ -19,6 +19,11 @@ public class Location implements Comparable<Location>{
 	aStar = false;
     }    
 
+    public int[] getCo(){
+	int[] c = {row, col};
+	return c;
+    }
+    
     public int compareTo(Location other){
 	if(aStar){
 	    return distToGoal + distToStart -

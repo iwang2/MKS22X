@@ -33,6 +33,10 @@ public class MazeSolver{
 	    //how do i set astar to true...
 	}
 	while(f.hasNext()){
+	    int[] co = start.getCo();
+	    int r = co[0];
+	    int c = co[1];
+	    
 	}
     }
 
