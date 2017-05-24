@@ -45,12 +45,13 @@ public class MyPriorityQueue{
 	if(index > tail / 2){
 	    return;
 	}
-	else if(pq.get(index).compareTo(pq.get(index*2)) < 0 &&
+	else if(pq.get(index).compareTo(pq.get(index*2)) > 0 &&
 		pq.get(index*2).compareTo(pq.get(index*2 + 1)) < 0){
 	    swap(index, index*2);
 	    down(index*2);
 	}
-	else if(pq.get(index).compareTo(pq.get(index*2 + 1)) > 0){
+	else if(index*2 < tail &&
+		pq.get(index).compareTo(pq.get(index*2 + 1)) > 0){
 	    swap(index, index*2 + 1);
 	    down(index*2 + 1);
 	}
