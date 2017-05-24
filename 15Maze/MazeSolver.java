@@ -47,11 +47,13 @@ public class MazeSolver{
 	    int r = next.getCo()[0];
 	    int c = next.getCo()[1];
 	    if(maze.get(r,c) == 'E'){
+		/*
 		while(next.getPrev() != start){
 		    int rp = next.getPrev().getCo()[0];
 		    int cp = next.getPrev().getCo()[1];
 		    maze.set(rp, cp, '@');
 		}
+		*/
 		return;
 	    }
 	    if(animate) System.out.println(this);

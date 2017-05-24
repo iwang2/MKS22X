@@ -81,10 +81,10 @@ public class MyHeap{
 	}else if(heap.get(index) > heap.get(index*2) &&
 		 heap.get(index*2) < heap.get(index*2 + 1)){
 	    swap(index, index*2);
-	    downM(index*2);
+	    downm(index*2);
 	}else if(heap.get(index) > heap.get(index*2 + 1)){
 	    swap(index, index*2 + 1);
-	    downM(index*2 + 1);
+	    downm(index*2 + 1);
 	}
     }
 
@@ -120,10 +120,12 @@ public class MyHeap{
 	MyHeap a = new MyHeap(false);
 	a.add(4);
 	a.add(3);
+	a.add(8);
 	a.add(1);
 	a.add(5);
 	a.add(6);
 	a.add(0);
+	a.add(7);
 	a.print();
 	a.remove();
 	a.print();
