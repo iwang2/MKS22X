@@ -22,11 +22,17 @@ public class Maze{
     public int getWidth(){
 	return maxCols;
     }
-
     public int getHeight(){
 	return maxRows;
     }
 
+    public char get(int row, int col){
+	return maze[row][col];
+    }
+    public void set(int row,int col, char n){
+	maze[row][col] = n;
+    }
+    
     private static String go(int x,int y){
 	return ("\033[" + x + ";" + y + "H");
     }
@@ -120,12 +126,6 @@ public class Maze{
 	return ans + "\n";
     }
 
-    public char get(int row, int col){
-	return maze[row][col];
-    }
-    public void set(int row,int col, char n){
-	maze[row][col] = n;
-    }
     public static String colorize(String s){
 	String ans = "";
 	Scanner in = new Scanner(s);

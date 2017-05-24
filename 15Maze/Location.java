@@ -19,6 +19,10 @@ public class Location implements Comparable<Location>{
 	aStar = false;
     }    
 
+    public Location getPrev(){
+	return this.previous;
+    }
+    
     public int[] getCo(){
 	int[] c = {row, col};
 	return c;
