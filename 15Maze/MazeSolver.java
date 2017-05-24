@@ -54,6 +54,7 @@ public class MazeSolver{
 		}
 		return;
 	    }
+	    if(animate) System.out.println(this);
 	    maze.set(r, c, '.');
 	    for(int i = 0; i < 4; i++){
 		int addR = alternate[i][0];
@@ -64,22 +65,20 @@ public class MazeSolver{
 				       Math.abs(r+addR - sr) + Math.abs(c+addC - sc),
 				       Math.abs(r+addR - er) + Math.abs(c+addC - ec),
 				       aStar));
+		    if(animate) System.out.println(this);
 		}
 	    }
 	}	
     }
 
     private boolean isValid(int r, int c){
-	return r < maze.getHeight() && r >= 0
-	    && c < maze.getWidth() && c >= 0;
+	return r < maze.getHeight()-1 && r > 0
+	    && c < maze.getWidth()-1 && c > 0
+	    && maze.get(r,c) == ' ';
     }
     
     public String toString(){
-	if(animate){
-	    return maze.toString(10);
-	}else{
-	    return maze.toString();
-	}
+	return maze.toString(50);
     }
 
     public static void main(String[] args){
