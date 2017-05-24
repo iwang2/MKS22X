@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class QueueFrontier implements Frontier{
     private Queue<Location> q;
 
