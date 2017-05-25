@@ -46,7 +46,7 @@ public class MyPriorityQueue{
 	    return;
 	}
 	else if(pq.get(index).compareTo(pq.get(index*2)) > 0 &&
-		pq.get(index*2).compareTo(pq.get(index*2 + 1)) < 0){
+		(index*2 < tail || pq.get(index*2).compareTo(pq.get(index*2 + 1)) < 0)){
 	    swap(index, index*2);
 	    down(index*2);
 	}

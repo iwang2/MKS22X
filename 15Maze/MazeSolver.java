@@ -45,6 +45,7 @@ public class MazeSolver{
 	int r = sr;
 	int c = sc;
 	Location next = start;
+	int distToStart = 1;
 	
 	while(f.hasNext() && !(r == er && c == ec)){
 	    next = f.next();
@@ -59,13 +60,13 @@ public class MazeSolver{
 		int addC = alternate[i][1];
 		if(isValid(r + addR, c + addC)){
 		    maze.set(r + addR, c + addC, '?');
-		    f.add(new Location(r + addR, c + addC, next,
-				       Math.abs(r+addR - sr) + Math.abs(c+addC - sc),
+		    f.add(new Location(r + addR, c + addC, next, distToStart,
 				       Math.abs(r+addR - er) + Math.abs(c+addC - ec),
 				       aStar));
 		    if(animate) System.out.println(this);
 		}
 	    }
+	    distToStart++;
 	}
 	maze.set(r, c, 'E');
 	System.out.println(this);
