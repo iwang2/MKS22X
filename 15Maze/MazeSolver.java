@@ -42,22 +42,18 @@ public class MazeSolver{
 	    aStar = true;
 	    f.add(start);
 	}
-	while(f.hasNext()){
-	    Location next = f.next();
-	    int r = next.getCo()[0];
-	    int c = next.getCo()[1];
-	    if(maze.get(r,c) == 'E'){
-		/*
-		while(next.getPrev() != start){
-		    int rp = next.getPrev().getCo()[0];
-		    int cp = next.getPrev().getCo()[1];
-		    maze.set(rp, cp, '@');
-		}
-		*/
-		return;
-	    }
+	int r = sr;
+	int c = sc;
+	Location next = start;
+	
+	while(f.hasNext() && !(r == er && c == ec)){
+	    next = f.next();
+	    r = next.getCo()[0];
+	    c = next.getCo()[1];
+
 	    if(animate) System.out.println(this);
 	    maze.set(r, c, '.');
+	    
 	    for(int i = 0; i < 4; i++){
 		int addR = alternate[i][0];
 		int addC = alternate[i][1];
@@ -70,7 +66,9 @@ public class MazeSolver{
 		    if(animate) System.out.println(this);
 		}
 	    }
-	}	
+	}
+	maze.set(r, c, 'E');
+	System.out.println(this);
     }
 
     private boolean isValid(int r, int c){
@@ -80,7 +78,7 @@ public class MazeSolver{
     }
     
     public String toString(){
-	return maze.toString(50);
+	return maze.toString(30);
     }
 
     public static void main(String[] args){
