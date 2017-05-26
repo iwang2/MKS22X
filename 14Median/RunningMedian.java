@@ -38,11 +38,13 @@ public class RunningMedian{
     }
 
     private void balance(){
-	if(msize > Msize && Msize != 0){
+	if(Math.abs(msize - Msize) == 1){
+	    return;
+	}else if(msize > Msize){
 	    max.add(min.remove());
 	    Msize++;
 	    msize--;
-	}else if(Msize > msize && msize != 0){
+	}else if(Msize > msize){
 	    min.add(max.remove());
 	    msize++;
 	    Msize--;
