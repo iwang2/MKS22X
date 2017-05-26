@@ -12,7 +12,7 @@ public class MyPriorityQueue{
     }
 
     public boolean empty(){
-	return pq.size() == 0;
+	return pq.size() < 2;
     }
     
     public void add(Location l){
@@ -46,7 +46,12 @@ public class MyPriorityQueue{
 	    return;
 	}
 	else if(pq.get(index).compareTo(pq.get(index*2)) > 0 &&
-		(index*2 < tail || pq.get(index*2).compareTo(pq.get(index*2 + 1)) < 0)){
+		index*2 > tail &&
+		pq.get(index*2).compareTo(pq.get(index*2 + 1)) < 0){
+	    swap(index, index*2);
+	    down(index*2);
+	}
+	else if(pq.get(index).compareTo(pq.get(index*2)) > 0 && index*2 <= tail){
 	    swap(index, index*2);
 	    down(index*2);
 	}

@@ -45,7 +45,7 @@ public class MazeSolver{
 	int r = sr;
 	int c = sc;
 	Location next = start;
-	int distToStart = 1;
+	int distToStart = 0;
 	
 	while(f.hasNext() && !(r == er && c == ec)){
 	    next = f.next();
