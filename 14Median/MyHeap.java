@@ -66,7 +66,11 @@ public class MyHeap{
 	if(index > tail / 2){
 	    return;
 	}else if(heap.get(index) < heap.get(index*2) &&
+		 index*2 > tail &&
 		 heap.get(index*2) > heap.get(index*2 + 1)){
+	    swap(index, index*2);
+	    downM(index*2);
+	}else if(heap.get(index) < heap.get(index*2) && index*2 == tail){
 	    swap(index, index*2);
 	    downM(index*2);
 	}else if(heap.get(index) < heap.get(index*2 + 1)){
@@ -78,6 +82,9 @@ public class MyHeap{
     private void downm(int index){
 	if(index > tail / 2){
 	    return;
+	}else if(heap.get(index) > heap.get(index*2) && index*2 == tail){
+	    swap(index, index*2);
+	    downM(index*2);
 	}else if(heap.get(index) > heap.get(index*2) &&
 		 heap.get(index*2) < heap.get(index*2 + 1)){
 	    swap(index, index*2);
@@ -126,6 +133,8 @@ public class MyHeap{
 	a.add(6);
 	a.add(0);
 	a.add(7);
+	a.print();
+	a.remove();
 	a.print();
 	a.remove();
 	a.print();
