@@ -69,7 +69,7 @@ public class MazeSolver{
 	    distToStart++;
 	}
 	maze.set(r, c, 'E');
-	System.out.println(this);
+	if(animate) System.out.println(this);
     }
 
     private boolean isValid(int r, int c){
@@ -83,6 +83,7 @@ public class MazeSolver{
     }
 
     public static void main(String[] args){
+	/*
 	if(args.length == 2){
 	    String s = args[0];
 	    MazeSolver a = new MazeSolver(s);
@@ -90,5 +91,9 @@ public class MazeSolver{
 	    System.out.println(a);
 	    a.solve(Integer.parseInt(args[1]));
 	}
+	*/
+	MazeSolver s = new MazeSolver("data2.txt");
+	s.solve(1);
+	String ans = s.toString();
     }
 }
